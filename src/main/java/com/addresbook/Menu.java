@@ -66,7 +66,7 @@ public class Menu {
                 case 2:
                     System.out.print("Enter new City : ");
                     city = GetData.getStringValue();
-                    PERSON.get(id).setCity(city);
+                  PERSON.get(id).setCity(city);
                     break;
                 case 3:
                     System.out.print("Enter new State : ");

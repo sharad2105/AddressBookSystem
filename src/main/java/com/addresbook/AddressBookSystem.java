@@ -22,7 +22,11 @@ public class AddressBookSystem {
                     menu.editPerson();
                     break;
                 case 3:
+<<<<<<< HEAD
                     menu.delete();
+=======
+                    menu.delete();;
+>>>>>>> UC4-Delete
                     break;
                 case 4 :
                     menu.display();
