@@ -93,7 +93,10 @@ public class Person {
             return firstName1.compareTo(firstName2);
         }
     };
+<<<<<<< HEAD
 
+=======
+>>>>>>> UC9-viewPerson
     public static Comparator<Person> citySorting = new Comparator<Person>() {
         @Override
         public int compare(Person p1, Person p2)
