@@ -3,22 +3,85 @@ package com.addresbook;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Menu {
+public class Menu implements IMenu {
     List<Person> PERSON = new ArrayList<Person>();
 
-    public void addPerson()
-    {
-        int i=0;
+    public static void searchByCity(List<Person> person) {
+        String search;
+        List<Person> matches = new ArrayList<>();
+        System.out.println("Enter First Name to search : ");
+        search = GetData.getStringValue();
+        int flag = 0;
+        for (Person p : person) {
+            if (p.getCity().equalsIgnoreCase(search)) {
+                flag = 1;
+                matches.add(p);
+            }
+        }
+        if (flag == 1) {
+            System.out.println("...Match Found...");
+            for (Person p : matches) {
+                System.out.println(p);
+            }
+        } else {
+            System.out.println("Match Not Found!!!");
+        }
+    }
+
+    public static void searchByState(List<Person> person) {
+        String search;
+        int flag = 0;
+        List<Person> matches = new ArrayList<>();
+        System.out.println("Enter First Name to search : ");
+        search = GetData.getStringValue();
+        for (Person p : person) {
+            if (p.getState().equalsIgnoreCase(search)) {
+                flag = 1;
+                matches.add(p);
+            }
+        }
+        if (flag == 1) {
+            System.out.println("...Match Found...");
+            for (Person p : matches) {
+                System.out.println(p);
+            }
+        } else {
+            System.out.println("Match Not Found!!!");
+        }
+    }
+
+    public static void sortByName(List<Person> person) {
+        person.sort(Person.firstNameSorting);
+        person.forEach(System.out::println);
+    }
+
+    public static void sortByCity(List<Person> person) {
+        person.sort(Person.citySorting);
+        person.forEach(System.out::println);
+    }
+
+    public static void sortByState(List<Person> person) {
+        person.sort(Person.stateSorting);
+        person.forEach(System.out::println);
+    }
+
+    public static void sortByZipCode(List<Person> person) {
+        person.sort(Person.zipSorting);
+        person.forEach(System.out::println);
+    }
+
+
+    public void addPerson() {
+        int i = 0;
         String firstName = null;
-        final String lastName, address, city, state, phoneNumber,zipCode;
-        while(i==0) {
+        final String lastName, address, city, state, phoneNumber, zipCode;
+        while (i == 0) {
             System.out.print("Enter First Name : ");
             firstName = GetData.getStringValue();
             if (checkExists(firstName)) { //calling checkExits() method to check Fname already exists or not.
                 System.out.println("Person Name Already Exists!!\nPlease enter different name...");
-            }
-            else {
-                i=1;
+            } else {
+                i = 1;
             }
         }
 
@@ -35,34 +98,31 @@ public class Menu {
         System.out.print("Enter state : ");
         state = GetData.getStringValue();
 
-        PERSON.add(new Person(firstName,lastName,address,city,state,phoneNumber,zipCode));
+        PERSON.add(new Person(firstName, lastName, address, city, state, phoneNumber, zipCode));
     }
 
 
-    public void display()
-    {
+    public void display() {
         if (PERSON.isEmpty()) {
             System.out.println("No Records!!!");
-        }
-        else {
+        } else {
             for (Person person : PERSON) {
                 System.out.println(person);
             }
         }
 
     }
-    public void editPerson()
-    {
-        int id,choice = 0, i=0;
-        String firstName,lastName,address,city,state,phoneNumber,zipCode;
-        for(Person person: PERSON)
-        {
-            System.out.println("ID: #"+PERSON.indexOf(person)+" : "+person);
+
+    public void editPerson() {
+        int id, choice = 0, i = 0;
+        String firstName, lastName, address, city, state, phoneNumber, zipCode;
+        for (Person person : PERSON) {
+            System.out.println("ID: #" + PERSON.indexOf(person) + " : " + person);
         }
         System.out.print("\nEnter ID to Edit Contact : ");
         id = GetData.getIntValue();
         System.out.println(PERSON.get(id));
-        while(i==0) {
+        while (i == 0) {
             System.out.println("What You Want to edit...\n"
                     + "\t1: Address\n"
                     + "\t2: city\n"
@@ -73,19 +133,13 @@ public class Menu {
             choice = GetData.getIntValue();
             switch (choice) {
                 case 1:
-                    System.out.print("Enter new Address : ");
-                    address = GetData.getStringValue();
-                    PERSON.get(id).setAddress(address);
+                    sortByName(personList);
                     break;
                 case 2:
-                    System.out.print("Enter new City : ");
-                    city = GetData.getStringValue();
-                  PERSON.get(id).setCity(city);
+                    sortByCity(personList);
                     break;
                 case 3:
-                    System.out.print("Enter new State : ");
-                    state = GetData.getStringValue();
-                    PERSON.get(id).setState(state);
+                    sortByState(personList);
                     break;
                 case 4:
                     System.out.print("Enter new Phone : ");
@@ -98,7 +152,7 @@ public class Menu {
                     PERSON.get(id).setZipCode(zipCode);
                     break;
                 case 6:
-                    i=1;
+                    i = 1;
                     break;
                 default:
                     System.out.println("Please Enter Valid Option");
@@ -106,19 +160,18 @@ public class Menu {
             System.out.println(PERSON.get(id));
         }
     }
+
     public void delete() {
         int id;
-        for(Person p: PERSON)
-        {
-            System.out.println("ID: #"+PERSON.indexOf(p)+" : "+p);
+        for (Person p : PERSON) {
+            System.out.println("ID: #" + PERSON.indexOf(p) + " : " + p);
         }
         System.out.print("\nEnter #ID to delete Contact : ");
         id = GetData.getIntValue();
         PERSON.remove(id);
     }
 
-    public void sortRecords()
-    {
+    public void sortRecords() {
 
         System.out.println("Sort By...\n"
                 + "1: First Name\n"
@@ -127,42 +180,19 @@ public class Menu {
                 + "4: Zip Code\n"
                 + "5: Back");
         int choice = GetData.getIntValue();
-        switch (choice)
-        {
+        switch (choice) {
             case 1:
-                Sort.sortByName(PERSON);
+                searchByCity(personList);
                 break;
-            case 2 :
-                Sort.sortByCity(PERSON);
+            case 2:
+                searchByState(personList);
                 break;
-            case 3 :
-                Sort.sortByState(PERSON);
+            case 3:
+                i = 1;
                 break;
-            case 4 :
-                Sort.sortByZip(PERSON);
-                break;
-            case 5 :
-                return;
+
             default:
                 System.out.println("Please Enter Valid Option...");
         }
-    }
-
-    public boolean checkExists(String firstName)
-    {
-        int flag=0;
-        for (Person p: PERSON)
-        {
-            if (p.getFirstName().equals(firstName))
-            {
-                flag=1;
-                break;
-            }
-        }
-        if (flag==1)
-        {
-            return true;
-        }
-        return false;
     }
 }
