@@ -1,5 +1,7 @@
 package com.addresbook;
 
+import java.util.Comparator;
+
 public class Person {
     private String firstName, lastName, address, city, state, phoneNumber,zipCode;
 
@@ -81,17 +83,14 @@ public class Person {
         this.phoneNumber = phoneNumber;
         this.zipCode = zipCode;
     }
-    public void display() {
-        System.out.println("------------------------ADDRESS BOOK-----------------------");
-
-        System.out.println("Person details are :");
-
-        System.out.println("FirstName is :				 " + firstName);
-        System.out.println("LastName is  : 		 		 " + lastName);
-        System.out.println("Address is   : 				 " + address);
-        System.out.println("City is     : 				 " + city);
-        System.out.println("state is   : 				 " + state);
-        System.out.println("Zipcode is   : 				 " + zipCode);
-        System.out.println("Phone Number is     : 			" + phoneNumber);
-    }
+    public static Comparator<Person> firstNameSorting = new Comparator<Person>() {
+        @Override
+        public int compare(Person p1, Person p2)
+        {
+            String firstName1 = p1.getFirstName();
+            String firstName2 = p2.getFirstName();
+            // ascending order
+            return firstName1.compareTo(firstName2);
+        }
+    };
 }

@@ -14,7 +14,7 @@ public class Menu {
         while(i==0) {
             System.out.print("Enter First Name : ");
             firstName = GetData.getStringValue();
-            if (checkExists(firstName)) {
+            if (checkExists(firstName)) { //calling checkExits() method to check Fname already exists or not.
                 System.out.println("Person Name Already Exists!!\nPlease enter different name...");
             }
             else {
@@ -116,6 +116,12 @@ public class Menu {
         id = GetData.getIntValue();
         PERSON.remove(id);
     }
+
+    public void sortRecords()
+    {
+        Sort.sortByName(PERSON);
+    }
+
     public boolean checkExists(String firstName)
     {
         int flag=0;
