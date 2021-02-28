@@ -1,8 +1,15 @@
 package com.addresbook;
 
 public class AddressBookException extends Exception {
-    public AddressBookException(){
-        return;
+    exceptionType type;
+
+    public AddressBookException(String message, exceptionType type) {
+        super(message);
+        this.type = type;
+    }
+
+    public enum exceptionType {
+        ENTERED_WRONG_ID
     }
 
 }
