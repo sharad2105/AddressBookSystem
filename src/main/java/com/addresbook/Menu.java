@@ -8,10 +8,20 @@ public class Menu {
 
     public void addPerson()
     {
-        final String firstName, lastName, address, city, state, phoneNumber,zipCode;
+        int i=0;
+        String firstName = null;
+        final String lastName, address, city, state, phoneNumber,zipCode;
+        while(i==0) {
+            System.out.print("Enter First Name : ");
+            firstName = GetData.getStringValue();
+            if (checkExists(firstName)) {
+                System.out.println("Person Name Already Exists!!\nPlease enter different name...");
+            }
+            else {
+                i=1;
+            }
+        }
 
-        System.out.print("Enter First Name : ");
-        firstName = GetData.getStringValue();
         System.out.print("Enter Last Name : ");
         lastName = GetData.getStringValue();
         System.out.print("Enter Phone Number : ");
@@ -105,5 +115,22 @@ public class Menu {
         System.out.print("\nEnter #ID to delete Contact : ");
         id = GetData.getIntValue();
         PERSON.remove(id);
+    }
+    public boolean checkExists(String firstName)
+    {
+        int flag=0;
+        for (Person p: PERSON)
+        {
+            if (p.getFirstName().equals(firstName))
+            {
+                flag=1;
+                break;
+            }
+        }
+        if (flag==1)
+        {
+            return true;
+        }
+        return false;
     }
 }

@@ -81,4 +81,17 @@ public class Person {
         this.phoneNumber = phoneNumber;
         this.zipCode = zipCode;
     }
+    public void display() {
+        System.out.println("------------------------ADDRESS BOOK-----------------------");
+
+        System.out.println("Person details are :");
+
+        System.out.println("FirstName is :				 " + firstName);
+        System.out.println("LastName is  : 		 		 " + lastName);
+        System.out.println("Address is   : 				 " + address);
+        System.out.println("City is     : 				 " + city);
+        System.out.println("state is   : 				 " + state);
+        System.out.println("Zipcode is   : 				 " + zipCode);
+        System.out.println("Phone Number is     : 			" + phoneNumber);
+    }
 }
