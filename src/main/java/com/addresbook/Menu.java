@@ -66,7 +66,7 @@ public class Menu {
                 case 2:
                     System.out.print("Enter new City : ");
                     city = GetData.getStringValue();
-      gi              PERSON.get(id).setCity(city);
+                  PERSON.get(id).setCity(city);
                     break;
                 case 3:
                     System.out.print("Enter new State : ");
@@ -91,5 +91,15 @@ public class Menu {
             }
             System.out.println(PERSON.get(id));
         }
+    }
+    public void delete() {
+        int id;
+        for(Person p: PERSON)
+        {
+            System.out.println("ID: "+PERSON.indexOf(p)+" : "+p);
+        }
+        System.out.print("\nEnter #ID to delete Contact : ");
+        id = GetData.getIntValue();
+        PERSON.remove(id);
     }
 }
