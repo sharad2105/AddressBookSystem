@@ -92,4 +92,14 @@ public class Menu {
             System.out.println(PERSON.get(id));
         }
     }
+    public void delete() {
+        int id;
+        for(Person p: PERSON)
+        {
+            System.out.println("ID: "+PERSON.indexOf(p)+" : "+p);
+        }
+        System.out.print("\nEnter #ID to delete Contact : ");
+        id = GetData.getIntValue();
+        PERSON.remove(id);
+    }
 }
